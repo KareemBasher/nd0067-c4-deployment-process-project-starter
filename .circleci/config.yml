@@ -52,6 +52,7 @@ jobs:
       # more setup needed for aws, node, elastic beanstalk
       
     working_directory: ~/udagram/udagram-api
+
     steps:
       - node/install:
           node-version: '14.15' 
@@ -60,7 +61,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-region: AWS_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-      - checkout:
+      - checkout
       - aws-s3/copy:
           to: 's3://udacity-karim-udagram/' 
           from: './www' 
