@@ -50,6 +50,7 @@ jobs:
     docker:
       - image: "cimg/base:stable"
       # more setup needed for aws, node, elastic beanstalk
+      working_directory: ~/udagram/udagram-api
     steps:
       - node/install:
           node-version: '14.15' 
@@ -61,7 +62,7 @@ jobs:
       - checkout
       - aws-s3/copy:
           to: 's3://udacity-karim-udagram/' 
-          from: '/udagram/udagram-api/www' 
+          from: './www' 
           aws-secret-access-key: AWS_SECRET_ACCESS_KET 
           aws-region: AWS_REGION 
           aws-access-key-id: AWS_ACCESS_KEY_ID 
@@ -70,7 +71,7 @@ jobs:
           # TODO: Install, build, deploy in both apps
           command: |
             eb create udagram-api-dev
-            eb deploy udagram-api
+            eb deploy udagram-api-dev
             
 workflows:
   udagram:
