@@ -54,9 +54,9 @@ jobs:
           node-version: '14.15' 
       - eb/setup
       - aws-cli/setup:
-          aws-access-key-id: AKIASPXBFEX7ZAOWUG6Z 
-          aws-region: env_AWS_REGION 
-          aws-secret-access-key: env_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: AKIASPXBFEX7ZAOWUG6Z
+          aws-region: us-east-1
+          aws-secret-access-key: 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
       - checkout
       - run:
           name: Deploy App
