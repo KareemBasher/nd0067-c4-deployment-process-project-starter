@@ -7,6 +7,16 @@ orbs:
   aws-s3: circleci/aws-s3@3.0.0
   # different jobs are calles later in the workflows sections
 jobs:
+  build:
+    docker:
+      # the base image can run most needed actions with orbs
+      - image: "cimg/node:14.15"
+    steps:
+      # install node and checkout code
+      - node/install:
+          node-version: '14.15'         
+      - checkout
+      # Use root level package.json to install dependencies in the frontend app
   deploy:
     docker:
       - image: "cimg/base:stable"
@@ -29,4 +39,16 @@ jobs:
             
 workflows:
   udagram:
-      - deploy
+    jobs:
+      - build
+      - hold:
+          filters:
+            branches:
+              only:
+                - master
+          type: approval
+          requires:
+            - build
+      - deploy:
+          requires:
+            - hold
