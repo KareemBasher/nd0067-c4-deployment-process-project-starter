@@ -62,7 +62,7 @@ jobs:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
           command: |
-            aws s3 cp --recursive  ./www s3://udacity-karim-udagram/
+            aws s3 cp --recursive  udagram/udagram-api/www s3://udacity-karim-udagram/
             eb create
             eb deploy udagram-api
             
