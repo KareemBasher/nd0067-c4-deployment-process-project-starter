@@ -4,6 +4,7 @@ orbs:
   node: circleci/node@5.0.2
   eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.1.1
+  aws-s3: circleci/aws-s3@3.0.0
   # different jobs are calles later in the workflows sections
 jobs:
   build:
@@ -58,11 +59,16 @@ jobs:
           aws-region: AWS_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - checkout
+      - aws-s3/copy:
+          to: 's3://udacity-karim-udagram/' 
+          from: '../udagram/udagram-api/www' 
+          aws-secret-access-key: AWS_SECRET_ACCESS_KET 
+          aws-region: AWS_REGION 
+          aws-access-key-id: AWS_ACCESS_KEY_ID 
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
           command: |
-            aws s3 cp --recursive ../udagram/udagram-api/www s3://udacity-karim-udagram/
             eb create
             eb deploy udagram-api
             
