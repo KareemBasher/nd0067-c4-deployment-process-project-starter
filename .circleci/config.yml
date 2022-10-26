@@ -46,16 +46,6 @@ jobs:
             npm run api:build
   # deploy step will run only after manual approval
   deploy:
-    parameters:
-      access-key:
-        type: env_var_name
-        default: AWS_ACCESS_KEY_ID
-      access-secret:
-        type: env_var_name
-        default: AWS_SECRET_ACCESS_KEY
-      region:
-        type: env_var_name
-        default: AWS_REGION
     docker:
       - image: "cimg/base:stable"
       # more setup needed for aws, node, elastic beanstalk
@@ -64,9 +54,9 @@ jobs:
           node-version: '14.15' 
       - eb/setup
       - aws-cli/setup:
-          aws-access-key-id: ${<< parameters.access-key >>}
-          aws-region: ${<< parameters.region >>}
-          aws-secret-access-key: ${<< parameters.access-secret >>}
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-region: AWS_REGION
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - checkout
       - run:
           name: Deploy App
