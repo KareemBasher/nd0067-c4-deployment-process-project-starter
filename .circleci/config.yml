@@ -49,13 +49,13 @@ jobs:
     parameters:
       access-key:
         type: env_var_name
-        default: AKIASPXBFEX7ZAOWUG6Z
+        default: AWS_ACCESS_KEY_ID
       access-secret:
         type: env_var_name
-        default: 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
+        default: AWS_SECRET_ACCESS_KEY
       region:
         type: env_var_name
-        default: us-east-1
+        default: AWS_REGION
     docker:
       - image: "cimg/base:stable"
       # more setup needed for aws, node, elastic beanstalk
