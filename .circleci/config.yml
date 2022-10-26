@@ -29,6 +29,4 @@ jobs:
             
 workflows:
   udagram:
-      - deploy:
-          requires:
-            - hold
+      - deploy
