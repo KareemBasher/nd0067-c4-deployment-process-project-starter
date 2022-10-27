@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: $CIRCLE_BRANCH-udagram-api
+    environment: udagram-api-dev
 global:
   application_name: udagram-api
   branch: null
